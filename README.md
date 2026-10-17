@@ -50,7 +50,7 @@ npx skills add blader/humanizer --global --agent codex
 
 ### Claude.ai and Claude Desktop
 
-Download this repository as a ZIP (**Code → Download ZIP**) and upload it as a skill in Settings.
+Download this repository as a ZIP (**Code → Download ZIP**) and upload it as a skill in Settings. Humanizer cannot save new personas there. It shows you the persona file instead, so you can add it to `personas/local/` and upload the skill again.
 
 ### Other agents
 
@@ -58,7 +58,7 @@ Download this repository as a ZIP (**Code → Download ZIP**) and upload it as a
 npx skills add blader/humanizer --global --agent '*'
 ```
 
-This installs Humanizer for every agent the Skills CLI supports, including Gemini CLI, GitHub Copilot, and Windsurf. Leave off `--global` in any command above to install it only in the current project. For an agent the Skills CLI does not know, copy `SKILL.md` into its skill folder.
+This installs Humanizer for every agent the Skills CLI supports, including Gemini CLI, GitHub Copilot, and Windsurf. Leave off `--global` in any command above to install it only in the current project. For an agent the Skills CLI does not know, copy this whole folder, including `personas/`, into its skill folder.
 
 ## Usage
 
@@ -97,6 +97,28 @@ Now humanize this text:
 ```
 
 Humanizer follows the sample's rhythm, word choice, punctuation, and deliberate quirks, including dashes if you use them.
+
+### Use a persona
+
+A persona is a saved voice with its own attitude, tone, and biases. Name one to rewrite in that voice:
+
+```
+Humanize this as blunt-engineer: [your text]
+```
+
+Three starters ship with Humanizer: `blunt-engineer`, `warm-explainer`, and `dry-academic`. Ask Humanizer to `list personas` to see them and your own.
+
+To add your own persona, describe it:
+
+```
+Add a persona called night-owl: a tired, wry developer who distrusts anything that "just works"
+```
+
+Humanizer asks a few questions about where and how the persona writes. Then it asks 3 to 5 questions for you to answer as the persona, one at a time. It saves your answers word for word, and they anchor the voice. You see the whole file before Humanizer saves it. You can also describe a voice on the spot, such as "like a grumpy sysadmin," and Humanizer offers to save it.
+
+A persona changes the voice, not the facts. It can add an opinion, but never a name, number, date, or claim that is not in your text. The context still shapes it, so the same persona writes a commit message more tightly than a blog post. If you also give a writing sample, the sample sets the sentence style and the persona sets the attitude.
+
+Your personas stay on your machine. In a git clone, Humanizer saves them in `personas/local/`, which git ignores. Otherwise it saves them in `~/.humanizer/personas/`. Your persona wins over a starter with the same name. Ask to `update night-owl` or `delete night-owl` to change or remove one.
 
 ## How it works
 

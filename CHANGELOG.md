@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.2.0
+
+- Added personas: saved voices with their own attitude, tone, and biases. Name one ("humanize this as blunt-engineer") and Humanizer rewrites in that voice, adjusted for the kind of text and its reader. A persona can add opinions but never facts, and it cannot override the skill's rules. With no persona named, nothing changes.
+- Added a persona library. Three starters ship in `personas/`: `blunt-engineer`, `warm-explainer`, and `dry-academic`. Users add their own through the skill, which asks questions to answer as the persona and saves the answers word for word as anchors. User personas go in a git-ignored `personas/local/` folder in a git clone, or in `~/.humanizer/personas/` otherwise.
+- Added `personas/TEMPLATE.md` with the persona format and the steps to add, update, or delete a persona. The validator checks each shipped persona.
+- README: added "Use a persona". The install note for other agents now says to copy the whole folder, not only `SKILL.md`.
+
 ## 3.1.0
 
 - Added pattern #26 and section F for replies that re-explain context the reader already has (#269). It acts on replies, not standalone writing. 26 patterns total.
