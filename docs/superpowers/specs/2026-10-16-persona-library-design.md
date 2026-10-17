@@ -1,8 +1,10 @@
 # Persona library design
 
 Date: 2026-10-16
-Status: Draft for review
+Status: Historical record. Shipped in 3.2.0.
 Target version: 3.2.0
+
+> This is the design as approved before implementation. The shipped version differs: it has two starters, `evidence-engineer` (planned as `blunt-engineer`) and `warm-explainer`, and `dry-academic` was dropped. `evidence-engineer` has 2 anchors, not 3. For current behavior, read `SKILL.md`, `personas/TEMPLATE.md`, and `CHANGELOG.md`.
 
 ## Summary
 

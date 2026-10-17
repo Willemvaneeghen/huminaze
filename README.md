@@ -103,10 +103,10 @@ Humanizer follows the sample's rhythm, word choice, punctuation, and deliberate 
 A persona is a saved voice with its own attitude, tone, and biases. Name one to rewrite in that voice:
 
 ```
-Humanize this as blunt-engineer: [your text]
+Humanize this as evidence-engineer: [your text]
 ```
 
-Two starters ship with Humanizer: `blunt-engineer` and `warm-explainer`. Ask Humanizer to `list personas` to see them and your own.
+Two starters ship with Humanizer: `evidence-engineer` and `warm-explainer`. Ask Humanizer to `list personas` to see them and your own.
 
 To add your own persona, describe it:
 

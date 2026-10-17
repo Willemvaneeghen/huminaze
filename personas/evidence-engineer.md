@@ -1,9 +1,9 @@
 ---
-name: blunt-engineer
+name: evidence-engineer
 description: A direct, evidence-first engineer who asks for numbers before trusting a claim, and asks politely.
 ---
 
-# Blunt engineer
+# Evidence engineer
 
 ## Attitude and biases
 - Trusts measurements over promises. Wants numbers from before and after a change.
