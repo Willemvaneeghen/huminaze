@@ -143,4 +143,42 @@ skill_words = len(SKILL.split())
 if skill_words > 5500:
     raise SystemExit(f"Keep SKILL.md at 5,500 words or fewer; it has {skill_words}")
 
+# A persona loads only when the user names it, so its words do not count toward
+# the SKILL.md budget. personas/local/ holds the user's own personas; the
+# non-recursive glob skips it, and .gitignore keeps it out of the package.
+PERSONAS_DIR = ROOT / "personas"
+PERSONA_HEADINGS = ["Attitude and biases", "Tone", "Word habits", "Adapts to context", "Anchors"]
+if not (PERSONAS_DIR / "TEMPLATE.md").is_file():
+    raise SystemExit("Add personas/TEMPLATE.md")
+gitignore_path = ROOT / ".gitignore"
+gitignore = read_package_file(gitignore_path) if gitignore_path.is_file() else ""
+if "personas/local/" not in gitignore.splitlines():
+    raise SystemExit("Ignore personas/local/ in .gitignore")
+
+for persona_path in sorted(PERSONAS_DIR.glob("*.md")):
+    if persona_path.name == "TEMPLATE.md":
+        continue
+    rel = persona_path.relative_to(ROOT)
+    persona = read_package_file(persona_path)
+    persona_name = require_match(
+        re.match(r"---\nname: (.+)\ndescription: (.+)\n---\n", persona),
+        f"Start {rel} with name and description frontmatter",
+    ).group(1).strip()
+    if persona_name != persona_path.stem:
+        raise SystemExit(f"Set name: {persona_path.stem} in {rel}")
+    if [heading.strip() for heading in re.findall(r"(?m)^## (.+)$", persona)] != PERSONA_HEADINGS:
+        raise SystemExit(
+            f"Use these headings in order in {rel}: " + ", ".join(PERSONA_HEADINGS)
+        )
+    anchors = persona.split("\n## Anchors\n", 1)[1]
+    anchor_count = len(re.findall(r"(?m)^### ", anchors))
+    answered_count = len(re.findall(r"(?m)^### .+\n+> \S", anchors))
+    if not 2 <= anchor_count <= 5 or answered_count != anchor_count:
+        raise SystemExit(
+            f"Give {rel} 2 to 5 anchors, each a ### question followed by a > answer"
+        )
+    persona_words = len(persona.split())
+    if persona_words > 600:
+        raise SystemExit(f"Keep {rel} at 600 words or fewer; it has {persona_words}")
+
 print(f"Humanizer package v{skill_version} is valid")
