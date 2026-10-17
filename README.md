@@ -106,7 +106,7 @@ A persona is a saved voice with its own attitude, tone, and biases. Name one to 
 Humanize this as blunt-engineer: [your text]
 ```
 
-Three starters ship with Humanizer: `blunt-engineer`, `warm-explainer`, and `dry-academic`. Ask Humanizer to `list personas` to see them and your own.
+Two starters ship with Humanizer: `blunt-engineer` and `warm-explainer`. Ask Humanizer to `list personas` to see them and your own.
 
 To add your own persona, describe it:
 
